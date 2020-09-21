@@ -8,7 +8,7 @@
     <title>Wsparcie</title>
 
 <body>
-
+<form>
  <div class="container">
   <div class="row">
     <div class="col-sm-4" style="text-align: center">
@@ -36,12 +36,13 @@
   <div class="row">
 
       <!--KOLUMNA1-->
-    <div class="col-sm">
+    <div class="col-sm" align="center">
+    <h3 style="text-align: center" >Lubuskie</h3>
 
-            <div class="form-group" style="width: 8rem; text-align: center">
+            <div class="form-group" style="width: 10rem; text-align: center">
 
              <label for="exampleFormControlSelect1">Wybierz powiat</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="powiatl" required>
+    <select class="form-control" id="exampleFormControlSelect1" name="powiatl">
         <option></option>
         {% for powiat in lubuskie_powiaty %}
       <option>{{ powiat.powiat }}</option>
@@ -52,12 +53,13 @@
     </div>
 
             <!--KOLUMNA2-->
-    <div class="col-sm">
+    <div class="col-sm" align="center">
+    <h3 style="text-align: center">Wielkopolskie</h3>
 
-                    <div class="form-group" style="width: 8rem; text-align: center">
+                    <div class="form-group" style="width: 10rem; text-align: center">
 
              <label for="exampleFormControlSelect1">Wybierz powiat</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="powiatw" required>
+    <select class="form-control" id="exampleFormControlSelect1" name="powiatw">
         <option></option>
         {% for powiat in wielkopolskie_powiaty %}
       <option>{{ powiat.powiat }}</option>
@@ -68,12 +70,13 @@
     </div>
 
             <!--KOLUMNA3-->
-    <div class="col-sm">
+    <div class="col-sm" align="center">
+    <h3 style="text-align: center">Zachodniopomorskie</h3>
 
-        <div class="form-group" style="width: 8rem; text-align: center">
+        <div class="form-group" style="width: 10rem; text-align: center">
 
              <label for="exampleFormControlSelect1">Wybierz powiat</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="powiatz" required>
+    <select class="form-control" id="exampleFormControlSelect1" name="powiatz">
         <option></option>
         {% for powiat in zachodniopomorskie_powiaty %}
       <option>{{ powiat.powiat }}</option>
@@ -85,33 +88,14 @@
   </div>
 </div>
 
+<hr />
+         <p style="text-align: center"> <button type="submit" style="text-align: center"
+                                                class="btn btn-success btn-lg">
+             Pokaż warunki</button>
+   </p>
 
 
-    <div class="form-group" style="width: 8rem; text-align: center">
-
-             <label for="exampleFormControlSelect1">Wybierz powiat</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="powiatl" required>
-        <option></option>
-        {% for powiat in lubuskie_powiaty %}
-      <option>{{ powiat.powiat }}</option>
-        {% endfor %}
-    </select>
-    </div>
-
-
-
-{% for powiat in lubuskie_powiaty %}
-{{ powiat.powiat }}
-{% endfor %}
-<br/>
-{% for powiat in wielkopolskie_powiaty %}
-{{ powiat.powiat }}
-{% endfor %}
-<br/>
-{% for powiat in zachodniopomorskie_powiaty %}
-{{ powiat.powiat }}
-{% endfor %}
-
+</form>
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
