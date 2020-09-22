@@ -16,22 +16,49 @@ def get_db():
     return g.sqlite_db
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    db = get_db()
-    lubuskie_cur = db.execute("SELECT DISTINCT powiat FROM gminy where wojewodztwo = 'lubuskie'")
-    lubuskie_powiaty = lubuskie_cur.fetchall()
 
-    wielkopolskie_cur = db.execute("SELECT DISTINCT powiat FROM gminy where wojewodztwo = 'wielkopolskie'")
-    wielkopolskie_powiaty = wielkopolskie_cur.fetchall()
+    if request.method == 'GET':
+        db = get_db()
+        lubuskie_cur = db.execute("SELECT DISTINCT powiat FROM gminy where wojewodztwo = 'lubuskie'")
+        lubuskie_powiaty = lubuskie_cur.fetchall()
 
-    zachodniopomorskie_cur = db.execute("SELECT DISTINCT powiat FROM gminy where wojewodztwo = 'zachodniopomorskie'")
-    zachodniopomorskie_powiaty = zachodniopomorskie_cur.fetchall()
+        wielkopolskie_cur = db.execute("SELECT DISTINCT powiat FROM gminy where wojewodztwo = 'wielkopolskie'")
+        wielkopolskie_powiaty = wielkopolskie_cur.fetchall()
 
-    # powiatl = request.form['powiatl']
-    # powiatw = request.form['powiatw']
-    # powiatz = request.form['powiatz']
-    return render_template('index.html', lubuskie_powiaty=lubuskie_powiaty, wielkopolskie_powiaty=wielkopolskie_powiaty,
+        zachodniopomorskie_cur = db.execute("SELECT DISTINCT powiat FROM gminy where wojewodztwo = 'zachodniopomorskie'")
+        zachodniopomorskie_powiaty = zachodniopomorskie_cur.fetchall()
+
+        return render_template('index.html', lubuskie_powiaty=lubuskie_powiaty, wielkopolskie_powiaty=wielkopolskie_powiaty,
+                           zachodniopomorskie_powiaty=zachodniopomorskie_powiaty)
+
+    else:
+        db = get_db()
+        powiatl = request.form['powiatl']
+        powiatw = request.form['powiatw']
+        powiatz = request.form['powiatz']
+
+        gminyl_cur = db.execute('select * from gminy where powiat = ?', [powiatl])
+        gminyl = gminyl_cur.fetchall()
+
+        gminyw_cur = db.execute('select * from gminy where powiat = ?', [powiatw])
+        gminyw = gminyw_cur.fetchall()
+
+        gminyz_cur = db.execute('select * from gminy where powiat = ?', [powiatz])
+        gminyz = gminyz_cur.fetchall()
+
+        lubuskie_cur = db.execute("SELECT DISTINCT powiat FROM gminy where wojewodztwo = 'lubuskie'")
+        lubuskie_powiaty = lubuskie_cur.fetchall()
+
+        wielkopolskie_cur = db.execute("SELECT DISTINCT powiat FROM gminy where wojewodztwo = 'wielkopolskie'")
+        wielkopolskie_powiaty = wielkopolskie_cur.fetchall()
+
+        zachodniopomorskie_cur = db.execute("SELECT DISTINCT powiat FROM gminy where wojewodztwo = 'zachodniopomorskie'")
+        zachodniopomorskie_powiaty = zachodniopomorskie_cur.fetchall()
+
+        return render_template('index.html', powiatl=powiatl, gminyl=gminyl, gminyw=gminyw, gminyz=gminyz,
+                               lubuskie_powiaty=lubuskie_powiaty, wielkopolskie_powiaty=wielkopolskie_powiaty,
                            zachodniopomorskie_powiaty=zachodniopomorskie_powiaty)
 
 
