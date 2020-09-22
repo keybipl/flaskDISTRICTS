@@ -114,11 +114,12 @@
 
 <div class="container">
 
-
+{% if request.method == 'POST' %}
 {% if gminyl or gminyw or gminyz %}
 {% include 'results.html' %}
 {% else %}
 <h3 style="color: brown; text-align: center">Nie wybrano powiatu żadnego powiatu.</h3>
+{% endif %}
 {% endif %}
 
 </div>
