@@ -57,9 +57,9 @@ def index():
         zachodniopomorskie_cur = db.execute("SELECT DISTINCT powiat FROM gminy where wojewodztwo = 'zachodniopomorskie'")
         zachodniopomorskie_powiaty = zachodniopomorskie_cur.fetchall()
 
-        return render_template('index.html', powiatl=powiatl, gminyl=gminyl, gminyw=gminyw, gminyz=gminyz,
-                               lubuskie_powiaty=lubuskie_powiaty, wielkopolskie_powiaty=wielkopolskie_powiaty,
-                           zachodniopomorskie_powiaty=zachodniopomorskie_powiaty)
+        return render_template('index.html', powiatl=powiatl, powiatw=powiatw, powiatz=powiatz, gminyl=gminyl,
+                               gminyw=gminyw, gminyz=gminyz, lubuskie_powiaty=lubuskie_powiaty,
+                               wielkopolskie_powiaty=wielkopolskie_powiaty, zachodniopomorskie_powiaty=zachodniopomorskie_powiaty)
 
 
 if __name__ == '__main__':
